@@ -1,0 +1,18 @@
+{
+    "name": "favrik/balalaika",
+    "authors": [
+        {
+            "name": "Favio Manriquez Leon",
+            "email": "favio@favrik.com"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+      "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {"Balalaika\\": "src/Balalaika"}
+    }
+}
