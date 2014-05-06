@@ -31,7 +31,7 @@ class BaseRule
      *
      * @return array
      */
-    public function operators()
+    public function getOperators()
     {
         return $this->operators;
     }
@@ -41,19 +41,25 @@ class BaseRule
      *
      * @return string
      */
-    public function name()
+    public function getName()
     {
         $base_name = str_replace(array(__NAMESPACE__, '\\', 'Rule'), '', get_class($this));
         $splitted = preg_split('/(?=[A-Z])/', $base_name, -1, PREG_SPLIT_NO_EMPTY);
         return join($splitted, ' ');
     }
 
+    /**
+     * Helper method to set the value.
+     */
     public function val($value)
     {
         $this->value = $value;
         return $this;
     }
 
+    /**
+     * Helper method to set the operator.
+     */
     public function op($operator)
     {
         $this->operator = $operator;

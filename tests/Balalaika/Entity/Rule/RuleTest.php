@@ -50,13 +50,13 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testSimpleHumanName()
     {
         $rule = new BaseRule('null', 'Lala');
-        $this->assertEquals('Base', $rule->name());
+        $this->assertEquals('Base', $rule->getName());
     }
 
     public function testLongerHumanName()
     {
         $rule = new OrderTotalRule('>', 100);
-        $this->assertEquals('Order Total', $rule->name());
+        $this->assertEquals('Order Total', $rule->getName());
     }
 
     public function testOrderTotal()
