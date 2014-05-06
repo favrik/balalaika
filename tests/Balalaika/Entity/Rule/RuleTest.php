@@ -3,6 +3,7 @@
 namespace Balalaika\Entity\Rule;
 
 use Balalaika\Entity\PromotionSubjectInterface;
+use Balalaika\TestPromotionSubject;
 
 class RuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -102,28 +103,5 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($rule->isValid($this->getSubject()));
         $rule->op(0);
         $this->assertFalse($rule->isValid($this->getSubject()));
-    }
-}
-
-class TestPromotionSubject implements PromotionSubjectInterface
-{
-    public function getTotal()
-    {
-        return 100;
-    }
-
-    public function isFirstTimeCustomer()
-    {
-        return true;
-    }
-
-    public function getShippingZipcode()
-    {
-        return 92231;
-    }
-
-    public function getUserId()
-    {
-        return 1;
     }
 }
