@@ -14,6 +14,6 @@ class OrderTotalRule extends BaseRule
 
     public function isValid(PromotionSubjectInterface $subject)
     {
-        return version_compare($subject->getTotal(), $this->value, $this->operator);
+        return version_compare($subject->getOrderTotal(), $this->value, $this->operator);
     }
 }

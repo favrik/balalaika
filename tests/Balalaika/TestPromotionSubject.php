@@ -6,9 +6,30 @@ use Balalaika\Entity\PromotionSubjectInterface;
 
 class TestPromotionSubject implements PromotionSubjectInterface
 {
-    public function getTotal()
+    protected $total = 100;
+
+    public function setTotal($total)
     {
-        return 100;
+        $this->total = $total;
+    }
+
+    public function getOrderTotal()
+    {
+        return $this->total;
+    }
+
+    public function getProductTotal()
+    {
+        return 80;
+    }
+
+    public function setFreeShipping()
+    {
+    }
+
+    public function addOrderDiscount($discount)
+    {
+        $this->total -= $discount;
     }
 
     public function isFirstTimeCustomer()
