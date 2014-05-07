@@ -53,6 +53,18 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(84, $subject->getOrderTotal());
     }
 
+    public function testDiscountPercentageValidation()
+    {
+        $action = new DiscountPercentageAction(200);
+        $this->assertFalse($action->isValid());
+
+        $action = new DiscountPercentageAction(0);
+        $this->assertFalse($action->isValid());
+
+        $action = new DiscountPercentageAction(100);
+        $this->assertTrue($action->isValid());
+    }
+
     public function testFreeShippingAction()
     {
         $subjectMock = $this->getSubjectMock('setFreeShipping');
