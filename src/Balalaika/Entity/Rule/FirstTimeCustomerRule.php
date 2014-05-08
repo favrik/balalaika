@@ -11,7 +11,7 @@ class FirstTimeCustomerRule extends BaseRule
         0 => 'false',
     );
 
-    public function isValid(PromotionSubjectInterface $subject)
+    public function getValidationResult(PromotionSubjectInterface $subject)
     {
         return $this->operator && $subject->isFirstTimeCustomer();
     }

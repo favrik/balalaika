@@ -23,6 +23,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testConstructorWithNoParameters()
     {
         $rule = new BaseRule();
+        $rule->initialize();
     }
 
     /**
@@ -30,7 +31,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorInvalidOperator()
     {
-        $rule = new BaseRule('--', 'Something to compare');
+        $rule = new BaseRule();
+        $rule->initialize('--', 'Something to compare');
     }
 
     /**
@@ -38,32 +40,47 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidMethodParameter()
     {
-        $rule = new BaseRule('null', 'First time customer');
+        $rule = new BaseRule();
+        $rule->initialize('null', 'First time customer');
         $this->assertFalse($rule->isValid('subject'));
     }
 
     public function testBaseRuleIsAlwaysInvalid()
     {
-        $rule = new BaseRule('null', 'First time customer');
+        $rule = new BaseRule();
+        $rule->initialize('null', 'First time customer');
         $this->assertFalse($rule->isValid($this->getSubject()));
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testValidationFailsWithoutInitialization()
+    {
+        $rule = new BaseRule();
+        $rule->isValid($this->getSubject());
     }
 
     public function testSimpleHumanName()
     {
-        $rule = new BaseRule('null', 'Lala');
+        $rule = new BaseRule();
+        $rule->initialize('null', 'Lala');
         $this->assertEquals('Base', $rule->getName());
     }
 
     public function testLongerHumanName()
     {
-        $rule = new OrderTotalRule('>', 100);
+        $rule = new OrderTotalRule();
+        $rule->initialize('>', 100);
         $this->assertEquals('Order Total', $rule->getName());
     }
 
     public function testOrderTotal()
     {
+        $rule = new OrderTotalRule();
+
         // Equal
-        $rule = new OrderTotalRule('=', 100);
+        $rule->initialize('=', 100);
         $this->assertTrue($rule->isValid($this->getSubject()));
         $rule->val(20);
         $this->assertFalse($rule->isValid($this->getSubject()));
@@ -83,7 +100,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
     public function testList()
     {
-        $rule = new UserIsRule('in', array(1));
+        $rule = new UserIsRule();
+        $rule->initialize('in', array(1));
         $this->assertTrue($rule->isValid($this->getSubject()));
         $rule->val(array(0));
         $this->assertFalse($rule->isValid($this->getSubject()));
@@ -93,13 +111,15 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $rule->val(array(1));
         $this->assertFalse($rule->isValid($this->getSubject()));
 
-        $rule = new ZipcodeIsRule('in', array(92231));
+        $rule = new ZipcodeIsRule();
+        $rule->initialize('in', array(92231));
         $this->assertTrue($rule->isValid($this->getSubject()));
     }
 
     public function testFirstTimeCustomer()
     {
-        $rule = new FirstTimeCustomerRule(1);
+        $rule = new FirstTimeCustomerRule();
+        $rule->initialize(1);
         $this->assertTrue($rule->isValid($this->getSubject()));
         $rule->op(0);
         $this->assertFalse($rule->isValid($this->getSubject()));

@@ -16,7 +16,7 @@ class ListRule extends BaseRule
         throw new \Exception('ListRule does not know the subject value name');
     }
 
-    public function isValid(PromotionSubjectInterface $subject)
+    public function getValidationResult(PromotionSubjectInterface $subject)
     {
         $in = in_array($this->getSubjectValue($subject), $this->value);
         $not_in = !$in;

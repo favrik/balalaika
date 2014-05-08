@@ -18,8 +18,11 @@ class PromotionTest extends \PHPUnit_Framework_TestCase
 
     public function testSettingRules()
     {
+        $rule = new OrderTotalRule();
+        $rule->initialize('>', 80);
+
         $promotion = new Promotion('Name');
-        $promotion->setRules(array(new OrderTotalRule('>', 80)));
+        $promotion->setRules(array($rule));
         $this->assertTrue($promotion->isEligible(new TestPromotionSubject()));
     }
 

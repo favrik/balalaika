@@ -12,7 +12,7 @@ class OrderTotalRule extends BaseRule
         '=' => 'equals',
     );
 
-    public function isValid(PromotionSubjectInterface $subject)
+    public function getValidationResult(PromotionSubjectInterface $subject)
     {
         return version_compare($subject->getOrderTotal(), $this->value, $this->operator);
     }

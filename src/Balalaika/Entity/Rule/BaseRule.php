@@ -15,8 +15,12 @@ class BaseRule
 
     protected $operator = null;
     protected $value;
+    protected $initialized = false;
 
-    public function __construct($operator, $value = null)
+    /**
+     * Pseudo constructor to be able to access methods before initialization.
+     */
+    public function initialize($operator, $value = null)
     {
         if (!isset($this->operators[$operator])) {
             throw new \Exception('Invalid operator passed: ' . $operator);
@@ -24,6 +28,7 @@ class BaseRule
 
         $this->operator = $operator;
         $this->value = $value;
+        $this->initialized = true;
     }
 
     /**
@@ -67,11 +72,24 @@ class BaseRule
     }
 
     /**
-     * Return the rule validation result. Base rule is always invalid.
+     * Return the rule validation result.
      *
      * @return boolean
      */
     public function isValid(PromotionSubjectInterface $subject)
+    {
+        $this->ensureRuleIsInitialized();
+        return $this->getValidationResult($subject);
+    }
+
+    protected function ensureRuleIsInitialized()
+    {
+        if (!$this->initialized) {
+            throw new \Exception($this->getName() . ' was not initialized');
+        }
+    }
+
+    public function getValidationResult(PromotionSubjectInterface $subject)
     {
         return false;
     }
