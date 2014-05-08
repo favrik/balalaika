@@ -3,6 +3,7 @@
 namespace Balalaika\Entity\Rule;
 
 use Balalaika\Entity\PromotionSubjectInterface;
+use Balalaika\Builder\BuilderUtil;
 
 class BaseRule
 {
@@ -48,9 +49,7 @@ class BaseRule
      */
     public function getName()
     {
-        $base_name = str_replace(array(__NAMESPACE__, '\\', 'Rule'), '', get_class($this));
-        $splitted = preg_split('/(?=[A-Z])/', $base_name, -1, PREG_SPLIT_NO_EMPTY);
-        return join($splitted, ' ');
+        return BuilderUtil::getMetaName(__NAMESPACE__, 'Rule', $this);
     }
 
     /**
