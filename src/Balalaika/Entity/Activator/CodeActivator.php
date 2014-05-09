@@ -18,13 +18,13 @@ class CodeActivator
 
     public function usageLimitPerCode($limit)
     {
-        $this->usageLimitPerCode = $limit;
+        $this->usageLimitPerCode = intval($limit);
         return $this;
     }
 
     public function usageLimitPerUser($limit)
     {
-        $this->usageLimitPerUser = $limit;
+        $this->usageLimitPerUser = intval($limit);
         return $this;
     }
 
