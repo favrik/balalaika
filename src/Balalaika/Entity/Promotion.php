@@ -21,7 +21,11 @@ class Promotion
             foreach ($this->actions as $action) {
                 $action->perform($subject);
             }
+
+            return true;
         }
+
+        return false;
     }
 
     public function isEligible(PromotionSubjectInterface $subject)
