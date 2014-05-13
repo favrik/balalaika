@@ -110,7 +110,9 @@ class ArrayBuilder
 	    $actions = array();
 	    foreach ($data['actions'] as $name => $action) {
 	        $current = $this->actions[$name]['object'];
-	        $current->initialize($action['argument']);
+	        // Quite hacky, because all actions are stored in the same table
+	        // the argument column has type ambiguity.
+	        $current->initialize(intval($action['argument']));
 	        $actions[] = $current;
 	    }
 	    $promotion->setActions($actions);
