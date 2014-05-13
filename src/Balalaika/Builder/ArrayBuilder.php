@@ -77,7 +77,7 @@ class ArrayBuilder
         $options = array();
         foreach ($this->actions as $key => $config) {
             $options[$key] = array(
-                'name' => BuilderUtil::nameToSentence($config['class'], 'Action'),
+                'name' => BuilderUtil::getMetaName('Balalaika\\Action', 'Action', $config['object']),
                 'field' => isset($config['field']) ? $config['field'] : null,
             );
         }
