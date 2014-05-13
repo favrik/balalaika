@@ -43,9 +43,9 @@ class ArrayBuilder
             'first_time_customer' => array('object' => new FirstTimeCustomerRule()),
         );
         $this->actions = array(
-            'discount_fixed_amount' => array('class' => 'DiscountFixedAmountAction', 'field' => 'amount'),
-            'discount_percentage' => array('class' => 'DiscountPercentageAction', 'field' => 'percentage'),
-            'free_shipping' => array('class' => 'FreeShippingAction'),
+            'discount_fixed_amount' => array('object' => new DiscountFixedAmountAction(), 'field' => 'amount'),
+            'discount_percentage' => array('object' => new DiscountPercentageAction(), 'field' => 'percentage'),
+            'free_shipping' => array('object' => new FreeShippingAction()),
         );
     }
 
@@ -109,8 +109,8 @@ class ArrayBuilder
 
       $actions = array();
       foreach ($data['actions'] as $name => $action) {
-        $class = $this->rules[$name]['class'];
-        $current = new $class($action['argument']);
+        $current = $this->actions[$name]['object'];
+        $current->initialize($action['argument']);
         $actions[] = $current;
       }
       $promotion->setActions($actions);
