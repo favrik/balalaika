@@ -8,7 +8,7 @@ class DiscountFixedAmountAction implements ActionInterface
 {
     protected $amount;
 
-    public function __construct($amount)
+    public function initialize($amount)
     {
         $this->amount = $amount;
     }

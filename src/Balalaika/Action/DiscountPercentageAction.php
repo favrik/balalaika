@@ -8,7 +8,7 @@ class DiscountPercentageAction implements ActionInterface
 {
     protected $percentage;
 
-    public function __construct($percentage)
+    public function initialize($percentage)
     {
         $this->percentage = $percentage;
     }
