@@ -86,35 +86,35 @@ class ArrayBuilder
     }
 
     public function build($data) {
-      $this->data = $data;
+	    $this->data = $data;
 
-      $promotion = new Promotion($data['name']);
+	    $promotion = new Promotion($data['name']);
 
-      if ($data['has_code']) {
-        $this->activators['code']
-          ->code($data['submitted_code'])
-          ->usageLimitPerCode($data['usage_limit_per_code'])
-          ->usageLimitPerUser($data['usage_limit_per_user']);
-      }
-      $this->activators['date_range']->start($data['start'])->end($data['end']);
-      $promotion->setActivators($this->activators);
+	    if ($data['has_code']) {
+	        $this->activators['code']
+	             ->code($data['submitted_code'])
+	             ->usageLimitPerCode($data['usage_limit_per_code'])
+	             ->usageLimitPerUser($data['usage_limit_per_user']);
+	    }
+	    $this->activators['date_range']->start($data['start'])->end($data['end']);
+	    $promotion->setActivators($this->activators);
 
-      $rules = array();
-      foreach ($data['rules'] as $name => $rule) {
-        $current = $this->rules[$name]['object'];
-        $current->initialize($rule['operator'], $rule['value']);
-        $rules[] = $current;
-      }
-      $promotion->setRules($rules);
+	    $rules = array();
+	    foreach ($data['rules'] as $name => $rule) {
+	        $current = $this->rules[$name]['object'];
+	        $current->initialize($rule['operator'], $rule['value']);
+	        $rules[] = $current;
+	    }
+	    $promotion->setRules($rules);
 
-      $actions = array();
-      foreach ($data['actions'] as $name => $action) {
-        $current = $this->actions[$name]['object'];
-        $current->initialize($action['argument']);
-        $actions[] = $current;
-      }
-      $promotion->setActions($actions);
+	    $actions = array();
+	    foreach ($data['actions'] as $name => $action) {
+	        $current = $this->actions[$name]['object'];
+	        $current->initialize($action['argument']);
+	        $actions[] = $current;
+	    }
+	    $promotion->setActions($actions);
 
-      return $promotion;
+	    return $promotion;
     }
 }
