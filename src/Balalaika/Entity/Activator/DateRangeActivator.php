@@ -30,8 +30,8 @@ class DateRangeActivator
     public function isActive(PromotionSubjectInterface $subject)
     {
         $currentDate = $subject->getCurrentDateTime();
-        $startDate = $subject->getDateTime($this->start);
-        $endDate = $subject->getDateTime($this->end);
+        $startDate = $this->start ? $subject->getDateTime($this->start) : null;
+        $endDate = $this->end ? $subject->getDateTime($this->end) : null;
 
         if ($this->start && $this->end) {
             return $currentDate > $startDate && $currentDate < $endDate;
