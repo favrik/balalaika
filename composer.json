@@ -4,7 +4,8 @@
     "authors": [
         {
             "name": "Favio Manriquez Leon",
-            "email": "favio@favrik.com"
+            "email": "favio@favrik.com",
+            "homepage": "http://favrik.com"
         }
     ],
     "license": "MIT",
