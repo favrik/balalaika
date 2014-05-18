@@ -1,11 +1,13 @@
 {
     "name": "favrik/balalaika",
+    "description": "Another promotions library/system/architecture.",
     "authors": [
         {
             "name": "Favio Manriquez Leon",
             "email": "favio@favrik.com"
         }
     ],
+    "license": "MIT",
     "require": {
 
     },
