@@ -22,7 +22,8 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $subjectMock = $this->getSubjectMock('addOrderDiscount');
         $subjectMock->expects($this->once())->method('addOrderDiscount');
 
-        $action = new DiscountFixedAmountAction(40);
+        $action = new DiscountFixedAmountAction();
+        $action->initialize(40);
         $action->perform($subjectMock);
 
         $subject = new TestPromotionSubject();
@@ -35,7 +36,8 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $subjectMock = $this->getSubjectMock('addOrderDiscount');
         $subjectMock->expects($this->never())->method('addOrderDiscount');
 
-        $action = new DiscountFixedAmountAction('orale');
+        $action = new DiscountFixedAmountAction();
+        $action->initialize('orale');
         $action->perform($subjectMock);
     }
 
@@ -45,7 +47,8 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $subjectMock->expects($this->once())->method('addOrderDiscount');
         $subjectMock->expects($this->once())->method('getProductTotal');
 
-        $action = new DiscountPercentageAction(20);
+        $action = new DiscountPercentageAction();
+        $action->initialize(20);
         $action->perform($subjectMock);
 
         $subject = new TestPromotionSubject();
@@ -55,13 +58,16 @@ class ActionTest extends \PHPUnit_Framework_TestCase
 
     public function testDiscountPercentageValidation()
     {
-        $action = new DiscountPercentageAction(200);
+        $action = new DiscountPercentageAction();
+        $action->initialize(200);
         $this->assertFalse($action->isValid());
 
-        $action = new DiscountPercentageAction(0);
+        $action = new DiscountPercentageAction();
+        $action->initialize(0);
         $this->assertFalse($action->isValid());
 
-        $action = new DiscountPercentageAction(100);
+        $action = new DiscountPercentageAction();
+        $action->initialize(100);
         $this->assertTrue($action->isValid());
     }
 

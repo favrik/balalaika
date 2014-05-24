@@ -37,8 +37,11 @@ class PromotionTest extends \PHPUnit_Framework_TestCase
 
     public function testPromotionApply()
     {
+        $discountAction = new DiscountFixedAmountAction();
+        $discountAction->initialize(20);
+
         $actions = array(
-            new DiscountFixedAmountAction(20),
+            $discountAction,
             new FreeShippingAction()
         );
 
