@@ -71,7 +71,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testLongerHumanName()
     {
         $rule = new OrderTotalRule();
-        $rule->initialize('>', 100);
+        $rule->initialize('>=', 100);
         $this->assertEquals('Order Total', $rule->getName());
     }
 

@@ -19,7 +19,7 @@ class DiscountFixedAmountAction implements ActionInterface
             $discountedTotal = $subject->getOrderTotal() - $this->amount;
             if ($discountedTotal < 0) {
                 // Modify amount to make the order total non-negative and stop at 0.
-                $this->amount -= $discountedTotal;
+                $this->amount -= abs($discountedTotal);
             }
 
             $subject->addOrderDiscount($this->amount);

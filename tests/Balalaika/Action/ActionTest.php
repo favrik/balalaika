@@ -31,6 +31,15 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(60, $subject->getOrderTotal());
     }
 
+    public function testDiscountFixedGreaterThanOrderTotal() {
+        $action = new DiscountFixedAmountAction();
+        $action->initialize(200);
+
+        $subject = new TestPromotionSubject();
+        $action->perform($subject);
+        $this->assertEquals(0, $subject->getOrderTotal());
+    }
+
     public function testDiscountFixedAmountInvalidParameter()
     {
         $subjectMock = $this->getSubjectMock('addOrderDiscount');

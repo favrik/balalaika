@@ -19,7 +19,7 @@ class PromotionTest extends \PHPUnit_Framework_TestCase
     public function testSettingRules()
     {
         $rule = new OrderTotalRule();
-        $rule->initialize('>', 80);
+        $rule->initialize('>=', 80);
 
         $promotion = new Promotion('Name');
         $promotion->setRules(array($rule));
