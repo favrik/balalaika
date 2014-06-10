@@ -7,8 +7,8 @@ use Balalaika\Entity\PromotionSubjectInterface;
 class OrderTotalRule extends BaseRule
 {
     protected $operators = array(
-        '>' => 'greater than',
-        '<' => 'lower than',
+        '>=' => 'greater than or equal',
+        '<=' => 'lower than or equal',
         '=' => 'equals',
     );
 
