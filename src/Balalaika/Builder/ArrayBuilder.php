@@ -16,9 +16,9 @@ use Balalaika\Builder\BuilderUtil;
 
 class ArrayBuilder
 {
-    protected $activators;
-    protected $actions;
-    protected $rules;
+    public $activators;
+    public $actions;
+    public $rules;
 
     /**
      * Promotion array.
