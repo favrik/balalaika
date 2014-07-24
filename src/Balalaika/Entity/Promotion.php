@@ -73,6 +73,11 @@ class Promotion
         return $this;
     }
 
+    public function hasActions()
+    {
+        return count($this->actions) > 0;
+    }
+
     public function getName()
     {
         return $this->name;
