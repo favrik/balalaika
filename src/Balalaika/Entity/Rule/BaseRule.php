@@ -18,6 +18,8 @@ class BaseRule
     protected $value;
     protected $initialized = false;
 
+    protected $error = 'Undefined error';
+
     /**
      * Pseudo constructor to be able to access methods before initialization.
      */
@@ -79,6 +81,11 @@ class BaseRule
     {
         $this->ensureRuleIsInitialized();
         return $this->getValidationResult($subject);
+    }
+
+    public function getError()
+    {
+        return $this->error;
     }
 
     protected function ensureRuleIsInitialized()

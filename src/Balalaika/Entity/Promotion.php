@@ -9,6 +9,7 @@ class Promotion
     protected $activators = array();
     protected $rules = array();
     protected $actions = array();
+    protected $errors = array();
 
     public function __construct($name)
     {
@@ -48,11 +49,17 @@ class Promotion
     {
         foreach ($this->rules as $rule) {
             if (!$rule->isValid($subject)) {
+                $this->errors[] = $rule->getError();
                 return false;
             }
         }
 
         return true;
+    }
+
+    public function getErrors()
+    {
+        return $this->errors;
     }
 
     public function setActivators(array $activators)

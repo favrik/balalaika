@@ -21,6 +21,10 @@ class ListRule extends BaseRule
         $in = in_array($this->getSubjectValue($subject), $this->value);
         $not_in = !$in;
 
+        if ($this->operator === 'in' && !$in) {
+            $this->error = $this->getSubjectValue($subject) . ' is not in ' . implode(', ', $this->value);
+        }
+
         switch ($this->operator) {
             case 'in': return $in;
             case 'not in': return $not_in;
