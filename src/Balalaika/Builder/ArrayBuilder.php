@@ -102,6 +102,9 @@ class ArrayBuilder
         $rules = array();
         foreach ($data['rules'] as $index => $rule) {
             $name = $rule['component_name'];
+            if (!isset($this->rules[$name])) {
+              continue;
+            }
             $current = clone $this->rules[$name]['object'];
             $current->initialize($rule['operator'], $rule['value']);
             $rules[] = $current;
@@ -111,6 +114,9 @@ class ArrayBuilder
         $actions = array();
         foreach ($data['actions'] as $index => $action) {
             $name = $action['component_name'];
+            if (!isset($this->actions[$name])) {
+                continue;
+            }
             $current = clone $this->actions[$name]['object'];
             // Quite hacky, because all actions are stored in the same table
             // the argument column has type ambiguity.
